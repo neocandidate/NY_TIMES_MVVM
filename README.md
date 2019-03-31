@@ -9,8 +9,8 @@ NYTimes demo application with MVVM architecture.
 4. UI tests and Unit tests
 
 ### Screenshots
-../screenshots/news_feeds.png
-../screenshots/news_details.png
+![Alt text](/screenshots/news_feeds.png?raw=true "News Feeds")
+![Alt text](/screenshots/news_details.png?raw=true "News Details")
 
 ### Brief
 The application architecture is designed based on MVVM Architecture.
