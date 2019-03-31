@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="feed"
+            type="com.assignment.nytimes.api.newsfeed.list.ResultsItem" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dimen10">
+
+        <ImageView
+            android:id="@+id/item_image_news_feed"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:contentDescription="@string/news_featured_image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="W,1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent="0.20"
+            app:news_image="@{feed.media.get(0).mediaMetadata.get(1).url}" />
+
+        <ImageView
+            android:id="@+id/item_image_news_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/news_details"
+            android:src="@drawable/ic_right"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/item_news_feed_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen10"
+            android:layout_marginEnd="@dimen/dimen10"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{feed.title}"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/item_image_news_details"
+            app:layout_constraintStart_toEndOf="@id/item_image_news_feed"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/item_news_feed_author"
+            android:layout_width="0dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="@dimen/dimen5"
+            android:layout_marginBottom="@dimen/dimen5"
+            android:text="@{feed.byline}"
+            android:textSize="@dimen/textSize12"
+            app:layout_constraintBottom_toTopOf="@+id/item_news_feed_publish_date"
+            app:layout_constraintEnd_toEndOf="@+id/item_news_feed_title"
+            app:layout_constraintStart_toStartOf="@+id/item_news_feed_title"
+            app:layout_constraintTop_toBottomOf="@+id/item_news_feed_title" />
+
+        <TextView
+            android:id="@+id/item_news_feed_publish_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{feed.publishedDate}"
+            android:textSize="@dimen/textsize10"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/item_news_feed_title" />
+
+        <ImageView
+            android:layout_width="@dimen/dimen10"
+            android:layout_height="@dimen/dimen10"
+            android:layout_marginEnd="@dimen/dimen5"
+            android:src="@drawable/ic_event"
+            app:layout_constraintBottom_toBottomOf="@id/item_news_feed_publish_date"
+            app:layout_constraintEnd_toStartOf="@id/item_news_feed_publish_date"
+            app:layout_constraintTop_toTopOf="@id/item_news_feed_publish_date" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

@@ -1,0 +1,90 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion versions.compiledSdk
+    buildToolsVersion versions.buildTools
+    defaultConfig {
+        applicationId "com.assignment.nytimes"
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetedSdk
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        debug{
+            buildConfigField "String", "BASE_URL", "\"https://api.nytimes.com/\""
+            buildConfigField "String", "NY_TIMES_API_KEY", "\"qGowwbuSefv3F7yJZQpU3sLyW9LvGN7u\""
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    lintOptions {
+        warningsAsErrors true
+        abortOnError true
+
+        disable 'ObsoleteLintCustomCheck'
+        disable lintExemptions.contentDescription
+        disable lintExemptions.googleAppIndexingWarning
+        disable lintExemptions.gradleDependency
+        disable lintExemptions.iconDipSize
+        disable lintExemptions.invalidPackage
+        disable lintExemptions.setTextI18n
+        disable lintExemptions.allowBackUp
+        disable lintExemptions.trulyRandom
+        disable lintExemptions.vectorPath
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation "com.android.support:appcompat-v7:$versions.androidSupportLibrary"
+    implementation "com.android.support:recyclerview-v7:$versions.androidSupportLibrary"
+    implementation "com.android.support:cardview-v7:$versions.androidSupportLibrary"
+    implementation "com.android.support:design:$versions.androidSupportLibrary"
+    implementation "com.android.support.constraint:constraint-layout:$versions.constraintLayout"
+
+    // reactive
+    implementation "io.reactivex.rxjava2:rxjava:$versions.rxjava2Version"
+    implementation "io.reactivex.rxjava2:rxandroid:$versions.rxandroidVersion"
+
+    // image
+    implementation "com.github.bumptech.glide:glide:$versions.glide"
+    annotationProcessor "com.github.bumptech.glide:compiler:$versions.glide"
+
+    // okhttp and retrofit
+    implementation "com.squareup.okhttp3:logging-interceptor:$versions.okHttpLogging"
+    implementation "com.squareup.okhttp3:okhttp:$versions.okHttpLogging"
+    implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$versions.retrofit"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofitRxJavaAdapter"
+
+    //LiveData & ViewModel
+    implementation "android.arch.lifecycle:extensions:$versions.androidLifecycle"
+
+    // dependency injection
+    implementation "com.google.dagger:dagger:$versions.dagger"
+    annotationProcessor "com.google.dagger:dagger-compiler:$versions.dagger"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$versions.dagger"
+    implementation "com.google.dagger:dagger-android-support:$versions.daggerAndroidSupport"
+
+    //Jsoup dependency
+    implementation "org.jsoup:jsoup:$versions.jsoup"
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
