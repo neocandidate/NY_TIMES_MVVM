@@ -69,6 +69,5 @@ public class NewsFeedActivity extends BaseActivity<ActivityNewsFeedBinding, News
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return super.onSupportNavigateUp();
-
     }
 }
