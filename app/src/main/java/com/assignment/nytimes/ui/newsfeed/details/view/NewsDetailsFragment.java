@@ -12,6 +12,9 @@ import com.assignment.nytimes.base.BaseFragment;
 import com.assignment.nytimes.databinding.FragmentNewsDetailsBinding;
 import com.assignment.nytimes.ui.newsfeed.details.DetailsNavigator;
 import com.assignment.nytimes.ui.newsfeed.details.viewmodel.NewsDetailsViewModel;
+import com.assignment.nytimes.ui.newsfeed.list.view.NewsFeedActivity;
+
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -44,6 +47,8 @@ public class NewsDetailsFragment extends BaseFragment<FragmentNewsDetailsBinding
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         newsDetailsViewModel.setNavigator(this);
+
+        ((NewsFeedActivity) Objects.requireNonNull(getActivity())).mActionbar.setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -86,5 +91,11 @@ public class NewsDetailsFragment extends BaseFragment<FragmentNewsDetailsBinding
     @Override
     public void loadDetails(String content) {
         mViewDataBinding.textNewsContent.setText(content);
+    }
+
+    @Override
+    public void onDestroy() {
+        ((NewsFeedActivity) Objects.requireNonNull(getActivity())).mActionbar.setDisplayHomeAsUpEnabled(false);
+        super.onDestroy();
     }
 }

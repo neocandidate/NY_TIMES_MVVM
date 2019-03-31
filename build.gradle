@@ -43,18 +43,22 @@ ext.versions = [
         dagger               : '2.15',
         daggerAndroidSupport : '2.15',
         daggerCompiler       : '3.1.2',
-        jsoup                : '1.10.2'
+        jsoup                : '1.10.2',
+        mokito               : '2.7.6',
+        espresso             : '3.0.2',
+        jUnit                : '4.12',
+        runner               : '1.0.2'
 ]
 
 ext.lintExemptions = [
-        contentDescription       : 'ContentDescription',
-        googleAppIndexingWarning : 'GoogleAppIndexingWarning',
-        gradleDependency         : 'GradleDependency',
-        missingConstraints       : 'MissingConstraints',
-        iconDipSize              : 'IconDipSize',
-        invalidPackage           : 'InvalidPackage',
-        setTextI18n              : 'SetTextI18n',
-        allowBackUp              : 'AllowBackup',
-        trulyRandom              : 'TrulyRandom',
-        vectorPath               : 'VectorPath'
+        contentDescription      : 'ContentDescription',
+        googleAppIndexingWarning: 'GoogleAppIndexingWarning',
+        gradleDependency        : 'GradleDependency',
+        missingConstraints      : 'MissingConstraints',
+        iconDipSize             : 'IconDipSize',
+        invalidPackage          : 'InvalidPackage',
+        setTextI18n             : 'SetTextI18n',
+        allowBackUp             : 'AllowBackup',
+        trulyRandom             : 'TrulyRandom',
+        vectorPath              : 'VectorPath'
 ]

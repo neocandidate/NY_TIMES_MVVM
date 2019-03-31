@@ -84,7 +84,10 @@ dependencies {
     //Jsoup dependency
     implementation "org.jsoup:jsoup:$versions.jsoup"
 
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    //Test
+    testImplementation "junit:junit:$versions.jUnit"
+    androidTestImplementation "com.android.support.test:runner:$versions.runner"
+    androidTestImplementation "com.android.support.test:rules:$versions.runner"
+    testImplementation "org.mockito:mockito-core:$versions.mokito"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$versions.espresso"
 }

@@ -3,6 +3,7 @@ package com.assignment.nytimes.ui.newsfeed.list.view;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.DividerItemDecoration;
 import android.view.View;
 import android.widget.Toast;
 
@@ -16,6 +17,7 @@ import com.assignment.nytimes.ui.newsfeed.list.NewsFeedNavigator;
 import com.assignment.nytimes.ui.newsfeed.list.viewmodel.NewsFeedViewModel;
 
 import java.util.List;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -28,6 +30,8 @@ public class NewsFeedFragment extends BaseFragment<FragmentNewsFeedBinding, News
 
     @Inject
     NewsFeedViewModel newsFeedViewModel;
+
+    private int NEWS_LOAD_DAYS = 7;
 
     @Override
     public int getBindingVariable() {
@@ -53,28 +57,27 @@ public class NewsFeedFragment extends BaseFragment<FragmentNewsFeedBinding, News
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mViewModel.loadNewsFeeds(7);
+        mViewModel.loadNewsFeeds(NEWS_LOAD_DAYS);
     }
 
     @Override
     public void loadNews(List<ResultsItem> results) {
-        mViewDataBinding.recyclerNewsFeed.setAdapter(new NewsFeedAdapter(results, new NewsFeedAdapter.OnNewsItemClickListener() {
-            @Override
-            public void onNewsItemClick(int position) {
-                NewsDetailsFragment mFragment = new NewsDetailsFragment();
-                Bundle mBundle = new Bundle();
-                mBundle.putString("TITLE", results.get(position).getTitle());
-                mBundle.putString("AUTHOR", results.get(position).getByline());
-                mBundle.putString("DATE", results.get(position).getPublishedDate());
-                mBundle.putString("URL", results.get(position).getUrl());
-                mFragment.setArguments(mBundle);
+        mViewDataBinding.recyclerNewsFeed.setAdapter(new NewsFeedAdapter(results, position -> {
+            NewsDetailsFragment mFragment = new NewsDetailsFragment();
+            Bundle mBundle = new Bundle();
+            mBundle.putString("TITLE", results.get(position).getTitle());
+            mBundle.putString("AUTHOR", results.get(position).getByline());
+            mBundle.putString("DATE", results.get(position).getPublishedDate());
+            mBundle.putString("URL", results.get(position).getUrl());
+            mFragment.setArguments(mBundle);
 
-                getBaseActivity().loadFragment(mFragment,
-                        R.id.frame_container,
-                        0,
-                        true);
-            }
+            getBaseActivity().loadFragment(mFragment,
+                    R.id.frame_container,
+                    0,
+                    true);
         }));
+        mViewDataBinding.recyclerNewsFeed.addItemDecoration(new DividerItemDecoration(Objects.requireNonNull(getActivity()),
+                DividerItemDecoration.VERTICAL));
     }
 
     @Override
